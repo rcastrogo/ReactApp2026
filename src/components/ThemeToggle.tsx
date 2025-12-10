@@ -17,7 +17,7 @@ export function ThemeToggle() {
       className="p-2 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 hover:cursor-pointer transition"
       aria-label="Toggle theme"
     >
-      <Show when={theme === "light"}>
+      <Show when={theme === "light" || theme === "system"}>
         <Moon />
       </Show>
       <Show when={theme === "dark"}>
