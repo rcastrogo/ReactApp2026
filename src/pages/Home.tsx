@@ -45,7 +45,9 @@ export default function Home() {
           description={t("home.cards.about.description")}
           image="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=800&q=80"
           to="/about"
-        />
+        >
+          <div className="m-5 p-1 border rounded-xl"><img className="rounded-xl" src={APP_BASENAME + "glypy.webp"} /></div>
+        </HomeCard>
 
         <HomeCard
           title={t("home.cards.config.title")}
@@ -72,12 +74,12 @@ export default function Home() {
           description={t("text:intro2")}
           image="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80"
           to="/"
-        />       
+        />
       </section>
       <Show when={isLoading}>
         <FullScreenLoader message={t('general.action.loading')} />
       </Show>
-      
+
     </div>
   );
 }
@@ -86,12 +88,14 @@ function HomeCard({
   title,
   description,
   image,
-  to
+  to,
+  children,
 }: {
-  title: string
-  description: string
-  image: string
-  to: string
+  title: string;
+  description: string;
+  image: string;
+  to: string;
+  children?: React.ReactNode;
 }) {
   return (
     <Link
@@ -111,6 +115,11 @@ function HomeCard({
         <p className="text-sm text-muted-foreground">
           {description}
         </p>
+        {children && (
+          <div className="mt-2">
+            {children}
+          </div>
+        )}
       </div>
     </Link>
   )
