@@ -12,6 +12,6 @@ export const APP_SPLASH_IMAGE = 'https://icon.icepanel.io/Technology/svg/Vite.js
 
 
 // LocalStorage namespace to avoid key collisions
-export const LOCAL_STORAGE_ROOT = "react-sessions.";
+export const LOCAL_STORAGE_ROOT = "react-app.";
 export const DEFAULT_LANGUAGE = "en";
 export const INFINITE_DELAY = 31416;

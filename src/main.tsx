@@ -12,10 +12,16 @@ import { ThemeProvider } from "./providers/ThemeProvider";
 
 const APP_BASENAME = import.meta.env.VITE_APP_BASE_URL || '/';
 
-const redirect = storage.readValue('redirect', '');
-if (redirect) {
-  storage.writeValue('redirect', '');
-  window.history.replaceState(null, '', redirect);
+// =================================================================
+// Solo GitHub Pages necesita manejar "redirect"
+// =================================================================
+const DEPLOY = import.meta.env.VITE_DEPLOY_TARGET || 'vercel';
+if (DEPLOY === 'gh') {
+  const redirect = storage.readValue('redirect', '');
+  if (redirect) {
+    storage.writeValue('redirect', '');
+    window.history.replaceState(null, '', redirect);
+  }
 }
 
 createRoot(document.getElementById('root')!).render(
