@@ -25,6 +25,28 @@ export default function Home() {
         <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
           {t("home.subtitle")}
         </p>
+
+        {/* Enlace al repositorio */}
+        <a
+          href="https://github.com/rcastrogo/ReactApp2026"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center px-6 py-3 mt-4 rounded-2xl bg-primary text-primary-foreground font-medium shadow hover:opacity-90 transition"
+        >
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fillRule="evenodd"
+              d="M12 .297a12 12 0 00-3.794 23.405c.6.111.82-.258.82-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.083-.73.083-.73 1.205.085 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.789.418-1.304.762-1.603-2.665-.305-5.466-1.362-5.466-6.06 0-1.338.465-2.433 1.235-3.289-.124-.303-.535-1.523.117-3.176 0 0 1.008-.323 3.3 1.257A11.52 11.52 0 0112 6.07c1.02.005 2.047.138 3.003.404 2.289-1.58 3.295-1.257 3.295-1.257.655 1.653.244 2.873.12 3.176.773.856 1.233 1.951 1.233 3.289 0 4.71-2.807 5.752-5.479 6.048.43.37.823 1.099.823 2.218v3.293c0 .322.216.694.825.576A12.004 12.004 0 0012 .297z"
+              clipRule="evenodd"
+            />
+          </svg>
+          {t("home.viewRepo") || "Ver repositorio"}
+        </a>
+
       </section>
 
       <section className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -182,13 +204,19 @@ export default function Home() {
             className="btn btn-primary"
             onClick={() => {
               const id = toast.loading(
-                <div className="">
+                <div>
                   "Loading..."
                   <IndeterminateProgressBar />
-                </div>);
+                </div>,
+                {
+                  classNames: {
+                    content: "w-full bg-gray-400 p-5 rounded-xl",
+                  }
+                }
+              );
               setTimeout(() => {
                 toast.success("Done!", { id });
-              }, 20000);
+              }, 2000);
             }}
           >
             Mostrar loading
@@ -204,10 +232,13 @@ export default function Home() {
             onClick={() =>
               toast(
                 <div>
-                  <strong>Custom message</strong>
+                  <strong>Glypy</strong>
                   <p className="text-xs text-muted-foreground">
-                    You can render React inside.
+                    {t("home.cards.dashboard.description")}
                   </p>
+                  <div className="m-5 p-1 border rounded-xl">
+                    <img className="rounded-xl" src={APP_BASENAME + "glypy.webp"} />
+                  </div>
                 </div>
               )
             }

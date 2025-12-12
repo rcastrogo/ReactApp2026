@@ -43,6 +43,7 @@
     "home": {
         "title": "Welcome to the React App",
         "subtitle": "A modern web application built with React, Tailwind CSS and love. Explore the different sections, try the paged table component, and discover all the included features.",
+        "viewRepo": "View Repository",
         "cards": {
             "pagedTable": {
                 "title": "Country table",

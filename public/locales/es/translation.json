@@ -43,6 +43,7 @@
     "home": {
         "title": "Bienvenido a React App",
         "subtitle": "Una aplicación web moderna construida con React, Tailwind CSS y cariño. Explora las distintas secciones, experimenta con nuestra tabla paginada y descubre todas las funcionalidades incluidas.",
+        "viewRepo": "Ver repositorio",
         "cards": {
             "pagedTable": {
                 "title": "Tabla de países",
