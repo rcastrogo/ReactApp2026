@@ -197,7 +197,7 @@ export default function AlertMessageComponent() {
   return (
     <Dialog open={true} onOpenChange={() => close()}>
       <DialogContent
-        className={cn('border-border bg-background text-foreground fixed top-[50%] left-[50%] z-50 grid w-full translate-x-[-50%] translate-y-[-50%] gap-0 border p-2 shadow-lg duration-200 sm:rounded-lg',
+        className={cn('border-border popover popover-foreground fixed top-[50%] left-[50%] z-50 grid w-full translate-x-[-50%] translate-y-[-50%] gap-0 border p-2 shadow-lg duration-200 sm:rounded-lg',
           DialogSizeClasses.sm)}
         showCloseButton={false}
         onEscapeKeyDown={(event) => {

@@ -1,10 +1,11 @@
-
-import { useTranslation } from "react-i18next";
-import { FullScreenLoader } from "../components/Loading";
+﻿import { useTranslation } from "react-i18next";
+import { FullScreenLoader, IndeterminateProgressBar } from "../components/Loading";
 import { useEffect, useState } from "react";
 import Show from "../components/Show";
 import { Link } from "react-router";
 import { APP_BASENAME } from "../config/constans";
+import { toast } from "sonner";
+import { Button } from "../components/ui/button";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,8 +31,8 @@ export default function Home() {
         <HomeCard
           title={t("text:intro")}
           description={t("text:intro2")}
-          image={APP_BASENAME + "glypy.webp"}
-          to="/"
+          image="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80"
+          to=""
         />
         <HomeCard
           title={t("home.cards.pagedTable.title")}
@@ -69,13 +70,153 @@ export default function Home() {
           image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600"
           to="/dashboard"
         />
-        <HomeCard
-          title={t("text:intro")}
-          description={t("text:intro2")}
-          image="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80"
-          to="/"
-        />
       </section>
+      <section className="grid gap-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Toast básico</h3>
+          <p className="text-sm text-muted-foreground">
+            Muestra un mensaje simple sin estilos especiales.
+          </p>
+          <Button
+            className="btn btn-primary"
+            onClick={() => toast("Hello world!")}
+          >
+            Mostrar toast
+          </Button>
+        </div>
+
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Éxito</h3>
+          <p className="text-sm text-muted-foreground">
+            Ideal para confirmar que algo ha ido bien.
+          </p>
+          <Button
+            className="btn btn-success"
+            onClick={() => toast.success("Everything OK!")}
+          >
+            Mostrar éxito
+          </Button>
+        </div>
+
+
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Error</h3>
+          <p className="text-sm text-muted-foreground">
+            Úsalo para avisar de un fallo o problema.
+          </p>
+          <Button
+            className="btn btn-destructive"
+            onClick={() => toast.error("Something went wrong", { className: "gb-red-500" })}
+          >
+            Mostrar error
+          </Button>
+        </div>
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Advertencia</h3>
+          <p className="text-sm text-muted-foreground">
+            Para avisos que no son críticos.
+          </p>
+          <Button
+            className="btn btn-warning"
+            onClick={() => toast.warning("Be careful!")}
+
+          >
+            Mostrar warning
+          </Button>
+        </div>
+
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Duración personalizada</h3>
+          <p className="text-sm text-muted-foreground">
+            Controla cuánto tiempo permanece visible.
+          </p>
+          <Button
+            className="btn btn-primary"
+            onClick={() =>
+              toast("Visible durante 5s", { duration: 5000 })
+            }
+          >
+            Mostrar toast 5s
+          </Button>
+        </div>
+
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Descripción</h3>
+          <p className="text-sm text-muted-foreground">
+            Útil para información más completa.
+          </p>
+          <Button
+            className="btn btn-secondary"
+            onClick={() =>
+              toast("Upload complete", { description: "Your file is now online." })
+            }
+          >
+            Mostrar descripción
+          </Button>
+        </div>
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Acción</h3>
+          <p className="text-sm text-muted-foreground">
+            Añade un botón dentro del toast (Undo, Retry…).
+          </p>
+          <Button
+            className="btn btn-accent"
+            onClick={() =>
+              toast("File deleted", {
+                action: {
+                  label: "Undo",
+                  onClick: () => toast("Undo done!"),
+                },
+              })
+            }
+          >
+            Mostrar acción
+          </Button>
+        </div>
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Loading</h3>
+          <p className="text-sm text-muted-foreground">
+            Se usa mientras esperas una operación async.
+          </p>
+          <Button
+            className="btn btn-primary"
+            onClick={() => {
+              const id = toast.loading(
+                <div className="">
+                  "Loading..."
+                  <IndeterminateProgressBar />
+                </div>);
+              setTimeout(() => {
+                toast.success("Done!", { id });
+              }, 20000);
+            }}
+          >
+            Mostrar loading
+          </Button>
+        </div>
+        <div className="border rounded-xl p-4 flex flex-col gap-3">
+          <h3 className="font-semibold">Contenido JSX</h3>
+          <p className="text-sm text-muted-foreground bg-background dark:bg-background">
+            Puedes componer el mensaje como un componente.
+          </p>
+          <Button
+            className="btn btn-primary"
+            onClick={() =>
+              toast(
+                <div>
+                  <strong>Custom message</strong>
+                  <p className="text-xs text-muted-foreground">
+                    You can render React inside.
+                  </p>
+                </div>
+              )
+            }
+          >
+            Mostrar JSX
+          </Button>
+        </div>
+      </section>
+
       <Show when={isLoading}>
         <FullScreenLoader message={t('general.action.loading')} />
       </Show>

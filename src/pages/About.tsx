@@ -39,8 +39,10 @@ export default function About() {
         <h2 className="text-2xl font-bold text-foreground mt-10">
           {t("about.section2.title")}
         </h2>
-        <p className="text-muted-foreground leading-relaxed">
-          {t("about.section2.body")}
+        <div>
+          <p className="text-muted-foreground leading-relaxed">
+            {t("about.section2.body")}
+          </p>         
           {/* Grid de tecnologías */}
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
@@ -109,7 +111,7 @@ export default function About() {
               </p>
             </div>
           </div>
-        </p>
+        </div>
       </section>
 
       {/* ALERT DEMO SECTION */}
